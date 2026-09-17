@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SweetBox | About Us</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --peach: #e8a58c;
+            --cream: #fff3d4;
+            --ink: #231309;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #eceff1;
+            color: var(--ink);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .site {
+            max-width: 100%;
+            background: var(--cream);
+            min-height: 100vh;
+            box-shadow: 0 0 24px rgba(0, 0, 0, .12);
+        }
+
+        header {
+            background: var(--peach);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px 28px;
+            padding: 14px 28px;
+        }
+
+        .brand {
+            font-family: "Alfa Slab One", Georgia, serif;
+            font-size: 28px;
+            line-height: 1.15;
+            color: var(--ink);
+            text-decoration: none;
+            max-width: 200px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 34px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            list-style: disc;
+            margin-left: 18px;
+        }
+
+        nav a {
+            font-size: 19px;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+            color: var(--ink);
+            text-decoration: none;
+            padding-bottom: 2px;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav a:hover,
+        nav a:focus-visible {
+            border-bottom-color: var(--ink);
+        }
+
+        main {
+            padding: 0;
+            text-align: center;
+        }
+
+        main img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        @media (max-width: 400px) {
+            header {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .brand {
+                max-width: none;
+            }
+
+            nav ul {
+                justify-content: center;
+                gap: 6px 24px;
+            }
+
+            nav a {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <a href="Homepage.html" class="logo">Sweet<span>Box</span></a>
+        <nav>
+            <a href="Homepage.html">Home</a>
+            <a class="active" href="AboutUs.html">About Us</a>
+            <a href="Products.html">Products</a>
+            <a href="ContactUs.html">Contact Us</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="login.html">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-banner">
+            <p class="eyebrow">GET TO KNOW US</p>
+            <h1>About SweetBox</h1>
+            <p>Sweet treats made for life's sweetest moments.</p>
+        </section>
+
+        ```
+        <section class="about-layout section">
+            <div class="about-art">
+                🧁<br>
+                <span>Made with care</span>
+            </div>
+
+            <div>
+                <h2>Every Sweet Treat Has a Story</h2>
+                <p>
+                    At SweetBox, we believe that every sweet treat has the power to make an ordinary day a little more
+                    special. We are an online bakery and dessert store dedicated to creating delicious, freshly prepared
+                    treats that are perfect for celebrations, gifts, or simply satisfying your sweet cravings.
+                </p>
+
+                <p>
+                    From beautifully decorated cakes and freshly baked cookies to delicious pastries and irresistible
+                    chocolates, SweetBox offers a variety of desserts made with care and attention to quality.
+                </p>
+
+                <h3>What We Offer</h3>
+
+                <ul class="offer-list">
+                    <li>🎂 <strong>Cakes</strong> – Perfect for birthdays, celebrations, and special moments.</li>
+                    <li>🍪 <strong>Cookies</strong> – Freshly baked treats with delicious flavors and textures.</li>
+                    <li>🥐 <strong>Pastries</strong> – Delightful baked goods made for breakfast, snacks, or sharing.
+                    </li>
+                    <li>🍫 <strong>Brownies</strong> – Rich, fudgy, and delicious treats perfect for satisfying your
+                        sweet tooth.</li>
+                </ul>
+            </div>
+        </section>
+        ```
+
+    </main>
+
+    <footer>
+        <div>
+            <strong>SweetBox</strong>
+            <p>Your little box of happiness.</p>
+        </div>
+        <p>© 2026 SweetBox. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
