@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brandon's Box</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
@@ -24,6 +25,11 @@
             background: #eceff1;
             color: var(--ink);
             font-family: Arial, Helvetica, sans-serif;
+        }
+        .logo {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         .site {
@@ -92,7 +98,7 @@
             display: block;
         }
 
-        @media (max-width: 400px) {
+        @media (max-width: 600px) { /* Note: Adjusted media query break to a standard size */
             header {
                 justify-content: center;
                 text-align: center;
@@ -115,8 +121,10 @@
 </head>
 
 <body>
-    <div class="site">
+    <!-- First Image -->
+    <img src="https://i.imgur.com/HE44AQb.png" alt="Logo" class="logo">
 
+    <div class="site">
         <header>
             <a class="brand" href="Homepage.html">Brandon's<br>Box</a>
             <nav>
@@ -133,8 +141,6 @@
         <main>
             <img src="https://i.imgur.com/HE44AQb.png" alt="Sweet Box">
         </main>
-
     </div>
 </body>
-
 </html>
