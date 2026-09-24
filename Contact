@@ -117,18 +117,19 @@
 <body>
 
     <header class="navbar">
-        <a href="Homepage.html" class="logo">Sweet<span>Box</span></a>
+        <a href="Homepage.html" class="logo"><h1>Sweet<span>Box</span></h1></a>
         <nav>
             <a href="Homepage.html">Home</a>
-            <a href="AboutUs.html">About Us</a>
-            <a href="Products.html">Products</a>
-            <a class="active" href="ContactUs.html">Contact Us</a>
+            <a href="About.html">About Us</a>
+            <a href="Product.html">Products</a>
+        
             <a href="signup.html">Sign Up</a>
             <a href="login.html">Login</a>
         </nav>
     </header>
 
-    <img src="https://i.imgur.com/UrW3BU3.jpeg" alt="Contact Us" style="width: 100%; height: auto; display: block;">
+
+    <img src="https://i.imgur.com/kdj82vk.png" alt="Contact Us" style="width: 100%; height: auto; display: block;">
 
 
 
