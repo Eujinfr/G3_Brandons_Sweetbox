@@ -1,7 +1,23 @@
-<html>
-    
-    
-    <p> PRODUCTS</p>
-    
-    
+<!DOCTYPE html> 
+<html lang="en">
+
+<head>
+    <title>Products</title>
+
+</head>
+
+<body> 
+
+     <a href="Homepage.html"><h1>Brandon's Box</h1></a>
+
+    <header class="navbar">
+        <nav>
+            <a href="About.html">About us</a>
+            <a href="Contact.html">Contact us</a>
+        </nav>
+
+        <h2>Product Lists</h2>
+
+    </header>
+</body>
 </html>
