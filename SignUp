@@ -1,0 +1,23 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+<head>
+    <title>Sign Up</title>
+
+</head>
+
+<body> 
+
+     <a href="Homepage.html"><h1>Brandon's Box</h1></a>
+
+    <header class="navbar">
+        <nav>
+            <a href="About.html">About us</a>
+            <a href="Contact.html">Contact us</a>
+        </nav>
+
+        <h2>Sign Up here</h2> <a href="login.html">Already have an account?</a>
+
+    </header>
+</body>
+</html>
