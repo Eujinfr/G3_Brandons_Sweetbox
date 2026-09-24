@@ -120,9 +120,8 @@
         <a href="Homepage.html" class="logo">Sweet<span>Box</span></a>
         <nav>
             <a href="Homepage.html">Home</a>
-            <a class="active" href="AboutUs.html">About Us</a>
-            <a href="Products.html">Products</a>
-            <a href="ContactUs.html">Contact Us</a>
+            <a href="Product.html">Products</a>
+            <a href="Contact.html">Contact Us</a>
             <a href="signup.html">Sign Up</a>
             <a href="login.html">Login</a>
         </nav>
