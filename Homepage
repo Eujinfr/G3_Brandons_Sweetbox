@@ -121,11 +121,11 @@
             <a class="brand" href="Homepage.html">Brandon's<br>Box</a>
             <nav>
                 <ul>
-                    <li><a href="Product.html">Products</a></li>
-                    <li><a href="About.html">About</a></li>
-                    <li><a href="Contact.html">Contact</a></li>
-                    <li><a href="signup.html">Sign Up</a></li>
-                    <li><a href="login.html">Login</a></li>
+                    <li><a href="Products">Products</a></li>
+                    <li><a href="About">About</a></li>
+                    <li><a href="Contact">Contact</a></li>
+                    <li><a href="SignUp">Sign Up</a></li>
+                    <li><a href="Login">Login</a></li>
                 </ul>
             </nav>
         </header>
