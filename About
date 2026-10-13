@@ -117,13 +117,13 @@
 <body>
 
     <header class="navbar">
-        <a href="Homepage.html" class="logo">Sweet<span>Box</span></a>
+        <a href="Homepage" class="logo">Sweet<span>Box</span></a>
         <nav>
-            <a href="Homepage.html">Home</a>
-            <a href="Product.html">Products</a>
-            <a href="Contact.html">Contact Us</a>
-            <a href="signup.html">Sign Up</a>
-            <a href="login.html">Login</a>
+            <a href="Homepage">Home</a>
+            <a href="Products">Products</a>
+            <a href="Contact">Contact Us</a>
+            <a href="SignUp">Sign Up</a>
+            <a href="Login">Login</a>
         </nav>
     </header>
 
