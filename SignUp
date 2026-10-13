@@ -8,15 +8,15 @@
 
 <body> 
 
-     <a href="Homepage.html"><h1>Brandon's Box</h1></a>
+     <a href="Homepage"><h1>Brandon's Box</h1></a>
 
     <header class="navbar">
         <nav>
-            <a href="About.html">About us</a>
-            <a href="Contact.html">Contact us</a>
+            <a href="About">About us</a>
+            <a href="Contact">Contact us</a>
         </nav>
 
-        <h2>Sign Up here</h2> <a href="login.html">Already have an account?</a>
+        <h2>Sign Up here</h2> <a href="login">Already have an account?</a>
 
     </header>
 </body>
