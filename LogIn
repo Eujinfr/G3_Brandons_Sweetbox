@@ -1,23 +1,50 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Log in</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SweetBox | Log In</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body> 
-
-     <a href="Homepage"><h1>Brandon's Box</h1></a>
+<body>
 
     <header class="navbar">
-        <nav>
-            <a href="About">About us</a>
-            <a href="Contact">Contact us</a>
+        <a class="logo" href="Homepage.html">Sweet<span>Box</span></a>
+        <button id="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+        <nav id="main-nav">
+            <a href="Homepage.html">Home</a>
+            <a href="Products.html">Products</a>
+            <a href="AboutUs.html">About Us</a>
+            <a href="ContactUs.html">Contact Us</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="login.html">Login</a>
+            <a href="Products.html">🛒 Cart (<span id="cart-count">0</span>)</a>
         </nav>
-
-        <h2>Welcome back</h2>
-        <h2>Please log in</h2> <a href="SignUp">New account? Sign in</a>
     </header>
+
+    <main class="form-box">
+        <h2>Welcome back</h2>
+        <p>Please log in</p>
+
+        <form id="login-form" novalidate>
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="example@mail.com">
+            <span class="error" id="email-error"></span>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Your password">
+            <span class="error" id="password-error"></span>
+
+            <button type="submit">Log In</button>
+            <div id="form-message"></div>
+        </form>
+
+        <p style="text-align:center;"><a href="signup.html">New account? Sign up</a></p>
+    </main>
+
+    <script src="script.js" defer></script>
 </body>
+
 </html>
