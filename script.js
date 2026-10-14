@@ -1,5 +1,5 @@
 /* =====================================================
-   SweetBox - script.js
+   BrandonsBox - script.js (Pa-polish nalang guys later ty -leader)
    Features:
    1. Form validation (SignUp / LogIn)      -> events: submit, input
    2. Shopping cart (Products)              -> events: click, change
@@ -121,8 +121,8 @@ function validateField(input) {
     }
  
     // 3. Password length rule
-    if (input.id === "password" && input.dataset.checkLength && value.length < 6) {
-        setError(input, "Password must be at least 6 characters.");
+    if (input.id === "password" && input.dataset.checkLength && value.length < 8) {
+        setError(input, "Password must be at least 8 characters.");
         return false;
     }
  
@@ -186,9 +186,9 @@ function setupSignupForm() {
             email: document.getElementById("email").value.trim().toLowerCase(),
             password: document.getElementById("password").value
         };
-        localStorage.setItem("sweetboxUser", JSON.stringify(user));
+        localStorage.setItem("BrandonsboxUser", JSON.stringify(user));
  
-        showFormMessage("Account created! Welcome to SweetBox, " + user.name + "!", true);
+        showFormMessage("Account created! Welcome to BrandonsBox, " + user.name + "!", true);
         form.reset();
     });
 }
@@ -219,12 +219,12 @@ function setupLoginForm() {
         }
  
         // Compare with the account saved during sign up
-        const savedUser = JSON.parse(localStorage.getItem("sweetboxUser"));
+        const savedUser = JSON.parse(localStorage.getItem("BrandonsboxUser"));
         const email = document.getElementById("email").value.trim().toLowerCase();
         const password = document.getElementById("password").value;
  
         if (savedUser && savedUser.email === email && savedUser.password === password) {
-            localStorage.setItem("sweetboxLoggedIn", "true");
+            localStorage.setItem("BrandonsboxLoggedIn", "true");
             showFormMessage("Login successful! Welcome back, " + savedUser.name + "!", true);
         } else {
             showFormMessage("Incorrect email or password.", false);
@@ -240,7 +240,7 @@ function setupLoginForm() {
 // Get the cart array from localStorage (or an empty array if nothing saved)
 function getCart() {
     try {
-        return JSON.parse(localStorage.getItem("sweetboxCart")) || [];
+        return JSON.parse(localStorage.getItem("BrandonsboxCart")) || [];
     } catch (error) {
         return [];
     }
@@ -248,7 +248,7 @@ function getCart() {
  
 // Save the cart array to localStorage
 function saveCart(cart) {
-    localStorage.setItem("sweetboxCart", JSON.stringify(cart));
+    localStorage.setItem("BrandonsboxCart", JSON.stringify(cart));
 }
  
 // Add a product to the cart (or increase quantity if it is already there)
@@ -292,7 +292,7 @@ function updateCartCount() {
     badge.textContent = count;
 }
  
-// Draw the cart contents on the page
+// Draww the cart contents on the page
 function renderCart() {
     const cartBox = document.getElementById("cart-items");
     const totalBox = document.getElementById("cart-total");
