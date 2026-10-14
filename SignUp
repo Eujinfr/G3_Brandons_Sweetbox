@@ -1,23 +1,58 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Sign Up</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SweetBox | Sign Up</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body> 
-
-     <a href="Homepage"><h1>Brandon's Box</h1></a>
+<body>
 
     <header class="navbar">
-        <nav>
-            <a href="About">About us</a>
-            <a href="Contact">Contact us</a>
+        <a class="logo" href="Homepage.html">Sweet<span>Box</span></a>
+        <button id="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+        <nav id="main-nav">
+            <a href="Homepage.html">Home</a>
+            <a href="Products.html">Products</a>
+            <a href="AboutUs.html">About Us</a>
+            <a href="ContactUs.html">Contact Us</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="login.html">Login</a>
+            <a href="Products.html">🛒 Cart (<span id="cart-count">0</span>)</a>
         </nav>
-
-        <h2>Sign Up here</h2> <a href="login">Already have an account?</a>
-
     </header>
+
+    <main class="form-box">
+        <h2>Sign Up here</h2>
+
+        <!-- novalidate lets our JavaScript handle the validation messages -->
+        <form id="signup-form" novalidate>
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Juan Dela Cruz">
+            <span class="error" id="name-error"></span>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="example@mail.com">
+            <span class="error" id="email-error"></span>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" data-check-length="true" placeholder="At least 6 characters">
+            <span class="error" id="password-error"></span>
+
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" placeholder="Re-enter password">
+            <span class="error" id="confirm-password-error"></span>
+
+            <button type="submit">Create Account</button>
+            <div id="form-message"></div>
+        </form>
+
+        <p style="text-align:center;"><a href="login.html">Already have an account?</a></p>
+    </main>
+
+    <script src="script.js" defer></script>
 </body>
+
 </html>
