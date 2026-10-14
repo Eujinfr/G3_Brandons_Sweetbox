@@ -1,23 +1,70 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Products</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SweetBox | Products</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body> 
-
-     <a href="Homepage"><h1>Brandon's Box</h1></a>
+<body>
 
     <header class="navbar">
-        <nav>
-            <a href="About">About us</a>
-            <a href="Contact">Contact us</a>
+        <a class="logo" href="Homepage.html">Sweet<span>Box</span></a>
+        <button id="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+        <nav id="main-nav">
+            <a href="Homepage.html">Home</a>
+            <a href="Products.html">Products</a>
+            <a href="AboutUs.html">About Us</a>
+            <a href="ContactUs.html">Contact Us</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="login.html">Login</a>
+            <a href="Products.html">🛒 Cart (<span id="cart-count">0</span>)</a>
         </nav>
-
-        <h2>Product Lists</h2>
-
     </header>
+
+    <h2 style="text-align:center;">Product List</h2>
+
+    <!-- data-* attributes are read by script.js when "Add to Cart" is clicked -->
+    <section id="product-list">
+        <div class="product-card" data-id="cake1" data-name="Chocolate Cake" data-price="650">
+            <div class="emoji">🎂</div>
+            <h3>Chocolate Cake</h3>
+            <p>₱650.00</p>
+            <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-id="cookie1" data-name="Choco Chip Cookies (6)" data-price="180">
+            <div class="emoji">🍪</div>
+            <h3>Choco Chip Cookies (6)</h3>
+            <p>₱180.00</p>
+            <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-id="pastry1" data-name="Butter Croissant" data-price="95">
+            <div class="emoji">🥐</div>
+            <h3>Butter Croissant</h3>
+            <p>₱95.00</p>
+            <button class="add-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-id="brownie1" data-name="Fudgy Brownies (4)" data-price="220">
+            <div class="emoji">🍫</div>
+            <h3>Fudgy Brownies (4)</h3>
+            <p>₱220.00</p>
+            <button class="add-btn">Add to Cart</button>
+        </div>
+    </section>
+
+    <section class="cart-section">
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <p id="cart-total">Total: ₱0.00</p>
+        <button id="clear-cart">Clear Cart</button>
+    </section>
+
+    <script src="script.js" defer></script>
 </body>
+
 </html>
