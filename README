@@ -1,0 +1,25 @@
+# SweetBox Final Project
+
+## Files
+- `Homepage.html` — homepage
+- `AboutUs.html` — About Us page
+- `Products.html` — product list and shopping cart
+- `ContactUs.html` — contact page
+- `signup.html` — sign-up form
+- `login.html` — login form
+- `style.css` — shared design and responsive styling
+- `script.js` — JavaScript features
+
+## JavaScript features demonstrated
+1. **Form validation:** checks required fields, email format, password length, and matching passwords. Events: `input` and `submit`.
+2. **Shopping cart:** add/remove items, change quantities, calculate totals, and save the cart with `localStorage`. Events: `click` and `change`; a loop calculates the total.
+3. **Interactive navigation:** highlights the current page, toggles the mobile menu, and changes link appearance on hover. Events: `click`, `mouseover`, and `mouseout`.
+4. **DOM updates:** JavaScript updates cart count, messages, validation errors, cart contents, and totals.
+
+## How to run
+Keep all files in the same folder and open `Homepage.html` in a browser. 
+For best results, run the folder using VS Code Live Server.
+
+## Important note
+This is a school demonstration. Account details are stored in browser `localStorage`,
+which is not secure enough for real accounts. Do not use real passwords.
