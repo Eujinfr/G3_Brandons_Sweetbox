@@ -41,7 +41,7 @@ nav a.hovered { opacity: .7; }                                      /* mouseover
 
 #menu-toggle { display: none; background: none; border: 2px solid #231309; border-radius: 6px; font-size: 22px; padding: 2px 10px; cursor: pointer; }
 
-/* Mobile menu: hidden until the hamburger is clicked */
+/* Mobile menu: hidden until clicked */
 @media (max-width: 600px) {
     #menu-toggle { display: block; }
     #main-nav { display: none; flex-direction: column; width: 100%; }
