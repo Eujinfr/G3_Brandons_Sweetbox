@@ -867,11 +867,11 @@ footer p { margin:5px 0; }
         </div>
 
         <h3>Payment Information:</h3>
-        <p>For this website demo, do not enter real payment details.</p>
+        <p>if you're using card payment.</p>
 
         <div class="field-row three">
           <div>
-            <label for="checkout-card">Card Number (Demo)</label>
+            <label for="checkout-card">Card Number</label>
             <input type="text" id="checkout-card"
             inputmode="numeric" autocomplete="off"
             placeholder="XXXX XXXX XXXX XXXX" maxlength="19">
@@ -904,7 +904,7 @@ footer p { margin:5px 0; }
     </div>
 
     <button class="brown-btn" id="pay-now" type="submit">
-      Confirm Demo Order
+      Confirm Order
     </button>
 
     <div id="checkout-message"></div>
@@ -1300,7 +1300,7 @@ function showMessage(message) {
 }
 
 /* =====================================
-   STORAGE
+   DATA STORAGE
 ===================================== */
 
 function readStore(key) {
@@ -1819,7 +1819,6 @@ function setupCheckoutForm() {
     var first = document.getElementById("checkout-first").value.trim();
 
     // Demo checkout only. No actual payment is processed.
-    // Do not enter real card or payment information.
     saveCart([]);
     renderCart();
     updateCartCount();
@@ -1828,7 +1827,7 @@ function setupCheckoutForm() {
 
     showFormMessage(
       "checkout-message",
-      "Demo order completed! Thank you, " + first + "!",
+      "Thank you for your purchase! " + first + "!",
       true
     );
   });
