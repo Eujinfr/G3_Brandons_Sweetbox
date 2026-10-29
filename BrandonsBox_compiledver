@@ -1,0 +1,1864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrandonsBox</title>
+<link rel="icon" type="image/x-icon" href="https://i.imgur.com/vPhWTw3.png">
+
+
+<style>
+:root {
+  --peach:#e8a58c;
+  --cream:#fff3d4;
+  --ink:#231309;
+  --brown:#8b451f;
+  --orange:#f4a460;
+  --dark:#3d1c14;
+}
+
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  margin:0;
+  background:#eceff1;
+  color:var(--ink);
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+.site {
+  min-height:100vh;
+  background:var(--cream);
+  display:flex;
+  flex-direction:column;
+}
+
+.page { display:none; flex:1; }
+.page.show { display:block; }
+section[id] { scroll-margin-top:70px; }
+
+/* NAVIGATION */
+.navbar {
+  position:sticky;
+  top:0;
+  z-index:100;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px 24px;
+  padding:14px 28px;
+  background:var(--peach);
+}
+
+.logo {
+  color:var(--ink);
+  text-decoration:none;
+  font-family:Georgia,serif;
+  font-size:28px;
+  font-weight:bold;
+}
+
+.logo span { color:var(--brown); }
+
+.navbar nav {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:8px 24px;
+}
+
+.navbar nav a {
+  color:var(--ink);
+  text-decoration:none;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+  padding-bottom:2px;
+  border-bottom:2px solid transparent;
+}
+
+nav a.active {
+  border-bottom-color:var(--ink);
+  font-weight:bold;
+}
+
+nav a.hovered { opacity:.7; }
+
+#menu-toggle {
+  display:none;
+  background:none;
+  border:2px solid var(--ink);
+  border-radius:6px;
+  font-size:22px;
+  padding:2px 10px;
+  cursor:pointer;
+}
+
+/* SECTIONS */
+.slide { min-height:calc(100vh - 64px); }
+
+.page-banner {
+  text-align:center;
+  padding:54px 20px 34px;
+}
+
+.page-banner .eyebrow {
+  font-size:13px;
+  font-weight:bold;
+  letter-spacing:2px;
+}
+
+.page-banner h1 {
+  font-family:Georgia,serif;
+  font-size:clamp(30px,5vw,44px);
+  margin:10px 0;
+}
+
+.page-banner p { font-size:18px; }
+
+.about-layout {
+  max-width:1000px;
+  margin:auto;
+  padding:30px 28px 65px;
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:40px;
+  align-items:start;
+}
+
+.about-art {
+  background:var(--peach);
+  border-radius:14px;
+  padding:55px 18px;
+  text-align:center;
+  font-size:66px;
+}
+
+.about-art span {
+  display:block;
+  margin-top:12px;
+  font-size:17px;
+  font-weight:bold;
+}
+
+.about-layout h2 {
+  font-family:Georgia,serif;
+  margin-top:0;
+}
+
+.about-layout p { line-height:1.7; }
+.offer-list { padding-left:22px; line-height:1.9; }
+
+.contact-image {
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+/* CONTACT DETAILS */
+.contact-details {
+  max-width:700px;
+  margin:20px auto 60px;
+  padding:35px;
+  background:#fff3d4;
+  border:2px solid #8b451f;
+  border-radius:12px;
+  text-align:center;
+  line-height:1.8;
+}
+
+.contact-details h2 {
+  font-family:Georgia,serif;
+  color:#8b451f;
+}
+
+/* FOOTER */
+footer {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  padding:20px 28px;
+  background:var(--peach);
+}
+
+footer p { margin:5px 0; }
+
+/* TOAST MESSAGE */
+#toast {
+  position:fixed;
+  bottom:24px;
+  right:24px;
+  background:#231309;
+  color:#fff3d4;
+  padding:12px 20px;
+  border-radius:8px;
+  opacity:0;
+  transform:translateY(20px);
+  transition:all .3s;
+  pointer-events:none;
+  z-index:999;
+}
+
+#toast.show {
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* PRODUCT SECTION */
+.section-title {
+  text-align:center;
+  padding-top:40px;
+  margin:0;
+}
+
+.category-title {
+  max-width:1000px;
+  margin:30px auto 0;
+  padding:0 28px;
+  font-family:Georgia,serif;
+}
+
+/* PRODUCT GRID */
+.product-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:20px;
+  padding:20px 28px;
+  max-width:1100px;
+  margin:0 auto;
+  align-items:stretch;
+}
+
+/* PRODUCT CARD */
+.product-card {
+  background:#fff3d4;
+  border-radius:10px;
+  padding:18px;
+  text-align:center;
+  border:1px solid #f0dfb0;
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  transition:transform .2s,box-shadow .2s;
+}
+
+.product-card.hovered {
+  transform:translateY(-6px);
+  box-shadow:0 8px 18px rgba(0,0,0,.2);
+}
+
+/* PRODUCT PICTURE */
+.product-image {
+  display:block;
+  width:100%;
+  height:190px;
+  object-fit:cover;
+  object-position:center;
+  border-radius:8px;
+  margin:0 auto 14px;
+  background:#f4e2c4;
+}
+
+/* INGREDIENTS */
+.ingredients {
+  text-align:left;
+  font-size:13px;
+  line-height:1.5;
+  margin:8px 0 14px;
+  color:#594333;
+  flex-grow:1;
+}
+
+.ingredients strong {
+  color:var(--brown);
+}
+
+.product-card h3 {
+  margin:8px 0;
+}
+
+.product-card p.price {
+  font-weight:bold;
+  margin:8px 0 14px;
+}
+
+/* ALIGNED ADD TO CART BUTTONS */
+.add-btn {
+  background:var(--peach);
+  border:none;
+  padding:12px 16px;
+  border-radius:6px;
+  cursor:pointer;
+  width:100%;
+  min-height:44px;
+  margin-top:auto;
+  font-weight:bold;
+  font-size:15px;
+}
+
+.add-btn:hover { background:#dc947b; }
+
+.view-all-wrap {
+  text-align:center;
+  padding:10px 0 60px;
+}
+
+.view-all-btn {
+  display:inline-block;
+  background:var(--peach);
+  padding:14px 28px;
+  font-size:16px;
+  font-weight:bold;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+  color:var(--ink);
+  text-decoration:none;
+  border-radius:6px;
+}
+
+.back-link {
+  display:block;
+  max-width:1000px;
+  margin:24px auto 0;
+  padding:0 28px;
+  color:var(--ink);
+}
+
+#all-products-list { padding-bottom:40px; }
+
+/* BROWN BUTTONS */
+.brown-btn {
+  display:inline-block;
+  background:var(--brown);
+  color:#fff;
+  border:none;
+  border-radius:30px;
+  padding:14px 30px;
+  font-family:Arial,sans-serif;
+  font-size:15px;
+  font-weight:bold;
+  text-decoration:none;
+  text-align:center;
+  cursor:pointer;
+}
+
+.brown-btn:hover { opacity:.85; }
+
+.qty-line {
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-top:6px;
+}
+
+.qty-label {
+  color:var(--orange);
+  font-weight:bold;
+  font-size:20px;
+}
+
+.qty-pill {
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+  background:#fff;
+  border-radius:20px;
+  padding:4px 12px;
+  font-weight:bold;
+}
+
+.qty-btn {
+  background:none;
+  border:none;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+  padding:0 4px;
+  color:var(--ink);
+}
+
+.item-img {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--peach);
+  border:2px solid var(--brown);
+  border-radius:14px;
+  overflow:hidden;
+}
+
+.item-img img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* CART PAGE */
+.cart-page {
+  max-width:900px;
+  margin:30px auto;
+  padding:30px 40px 40px;
+  border:2px solid var(--brown);
+  border-radius:22px;
+}
+
+.cart-page h1 {
+  font-family:Arial,sans-serif;
+  text-transform:uppercase;
+  color:var(--brown);
+  font-size:clamp(30px,5vw,44px);
+  line-height:1.05;
+  margin:0 0 30px;
+  max-width:360px;
+}
+
+.cart-row {
+  display:flex;
+  align-items:center;
+  gap:20px;
+  padding:10px 0;
+}
+
+.cart-row .item-img {
+  width:110px;
+  height:110px;
+  flex-shrink:0;
+}
+
+.cart-info { flex:1; }
+
+.cart-name {
+  font-family:Arial,sans-serif;
+  font-size:clamp(20px,3vw,30px);
+  margin:0;
+}
+
+.price-oval {
+  background:#fff;
+  color:var(--brown);
+  border-radius:50%;
+  padding:14px 22px;
+  font-size:20px;
+  white-space:nowrap;
+}
+
+.cart-buttons {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px 30px;
+  margin-top:40px;
+}
+
+#cart-empty {
+  text-align:center;
+  font-size:18px;
+}
+
+/* CHECKOUT */
+.checkout-page {
+  max-width:1100px;
+  margin:20px auto;
+  padding:20px 28px 40px;
+}
+
+.checkout-title {
+  font-family:Arial,sans-serif;
+  color:var(--dark);
+  font-size:clamp(34px,6vw,60px);
+  letter-spacing:-2px;
+  margin:0 0 10px;
+}
+
+.checkout-layout {
+  display:grid;
+  grid-template-columns:1fr 340px;
+  gap:30px;
+  align-items:start;
+}
+
+.checkout-fields h3 {
+  font-size:24px;
+  font-weight:normal;
+  margin:20px 0 6px;
+}
+
+.field-row {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0 40px;
+}
+
+.field-row.three {
+  grid-template-columns:1.4fr 1fr 1fr;
+}
+
+.checkout-fields label {
+  display:block;
+  margin-top:12px;
+  font-size:18px;
+}
+
+.checkout-fields input,
+.checkout-fields select {
+  width:100%;
+  padding:12px;
+  margin-top:6px;
+  border:2px solid #ccc;
+  background:#fff;
+  font-size:16px;
+}
+
+.checkout-fields input.invalid,
+.checkout-fields select.invalid {
+  border-color:#c0392b;
+}
+
+.error {
+  display:block;
+  color:#c0392b;
+  font-size:13px;
+  min-height:16px;
+}
+
+.orders-title {
+  font-family:Arial,sans-serif;
+  color:var(--dark);
+  font-size:clamp(28px,4vw,48px);
+  letter-spacing:-1px;
+  text-align:center;
+  margin:0 0 10px;
+}
+
+.orders-box {
+  background:#fff;
+  border-radius:30px;
+  padding:24px 20px;
+  min-height:250px;
+}
+
+.order-row {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:22px;
+}
+
+.order-row .item-img {
+  width:80px;
+  height:80px;
+  flex-shrink:0;
+}
+
+.order-name {
+  font-weight:bold;
+  font-size:14px;
+  margin:0;
+}
+
+.order-info .qty-label { font-size:12px; }
+
+.order-info .qty-pill {
+  background:#deb887;
+  padding:2px 10px;
+  gap:10px;
+}
+
+.order-info .qty-btn { font-size:12px; }
+
+.order-price {
+  color:var(--brown);
+  font-size:14px;
+  margin:4px 0 0;
+}
+
+#pay-now {
+  width:100%;
+  margin-top:30px;
+}
+
+#checkout-message {
+  max-width:600px;
+  margin:14px auto 0;
+}
+
+/* SIGN UP AND LOGIN */
+.form-box {
+  max-width:420px;
+  margin:30px auto;
+  padding:24px;
+  background:#fff3d4;
+  border-radius:10px;
+}
+
+.form-box label {
+  display:block;
+  margin-top:14px;
+  font-weight:bold;
+}
+
+.form-box input {
+  width:100%;
+  padding:10px;
+  margin-top:4px;
+  border:2px solid #ccc;
+  border-radius:6px;
+}
+
+.form-box input.invalid { border-color:#c0392b; }
+
+.form-box button {
+  margin-top:18px;
+  width:100%;
+  padding:12px;
+  background:#e8a58c;
+  border:none;
+  border-radius:6px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.form-message {
+  margin-top:14px;
+  padding:10px;
+  border-radius:6px;
+  text-align:center;
+}
+
+.form-message.success {
+  background:#d4edda;
+  color:#155724;
+}
+
+.form-message.error-msg {
+  background:#f8d7da;
+  color:#721c24;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width:800px) {
+  .checkout-layout { grid-template-columns:1fr; }
+  .field-row,
+  .field-row.three { grid-template-columns:1fr; }
+  .product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+
+@media (max-width:700px) {
+  .navbar { padding:14px 18px; }
+  .about-layout { grid-template-columns:1fr; }
+  .about-art {
+    max-width:280px;
+    width:100%;
+    margin:0 auto;
+  }
+  footer {
+    flex-direction:column;
+    text-align:center;
+  }
+  .cart-page {
+    padding:24px 18px 30px;
+    margin:16px 12px;
+  }
+}
+
+@media (max-width:600px) {
+  #menu-toggle { display:block; }
+
+  #main-nav {
+    display:none;
+    flex-direction:column;
+    align-items:flex-start;
+    width:100%;
+  }
+
+  #main-nav.open { display:flex; }
+
+  .cart-row { flex-wrap:wrap; }
+  .product-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+
+<body>
+<div class="site">
+
+<header class="navbar">
+  <a class="logo" href="#about">Brandons<span>Box</span></a>
+
+  <button id="menu-toggle" type="button"
+  aria-label="Toggle navigation" aria-expanded="false">☰</button>
+
+  <nav id="main-nav">
+    <a href="#about" data-page="about">About Us</a>
+    <a href="#products" data-page="products">Products</a>
+    <a href="#contact" data-page="contact">Contact Us</a>
+    <a href="#signup" data-page="signup">Sign Up</a>
+    <a href="#login" data-page="login">Login</a>
+    <a href="#cart">🛒 Cart (<span id="cart-count">0</span>)</a>
+  </nav>
+</header>
+
+<!-- MAIN WEBSITE -->
+<div id="scroll-site">
+
+  <!-- ABOUT -->
+  <section class="slide" id="about">
+    <div class="page-banner">
+      <p class="eyebrow">GET TO KNOW US</p>
+      <h1>About BrandonsBox</h1>
+      <p>Sweet treats made for life's sweetest moments.</p>
+    </div>
+
+    <div class="about-layout">
+      <div class="about-art">
+        <img src="https://i.imgur.com/vPhWTw3.png" alt="BrandonsBox Logo" style="max-width: 100%; height: auto;">
+        <br>
+        <span>Box of Sweets and Happiness.</span>
+      </div>
+
+      <div>
+        <h2>Every Sweet Treat Has a Story</h2>
+
+        <p>
+          At BrandonsBox: Box of Sweets and happiness, we believe that every
+          sweet treat has the power to make an ordinary day a
+          little more special. We are an online bakery and dessert
+          store dedicated to creating delicious, freshly prepared
+          treats that are perfect for celebrations, gifts, or simply
+          satisfying your sweet cravings.
+        </p>
+
+        <p>
+          From beautifully decorated cakes and freshly baked
+          cookies to delicious pastries and irresistible brownies,
+          BrandonsBox offers a variety of desserts made with care
+          and attention to quality.
+        </p>
+
+        <h3>What We Offer</h3>
+
+        <ul class="offer-list">
+          <li>🎂 <strong>Cakes</strong> – Perfect for birthdays,
+          celebrations, and special moments.</li>
+
+          <li>🍪 <strong>Cookies</strong> – Freshly baked treats
+          with delicious flavors and textures.</li>
+
+          <li>🥐 <strong>Pastries</strong> – Delightful baked goods
+          made for breakfast, snacks, or sharing.</li>
+
+          <li>🍫 <strong>Brownies</strong> – Rich, fudgy, and
+          delicious treats perfect for satisfying your chocolate
+          cravings.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEST SELLERS -->
+  <section class="slide" id="products">
+    <h2 class="section-title">Best Sellers</h2>
+    <div class="product-grid" id="best-sellers-list"></div>
+
+    <div class="view-all-wrap">
+      <a class="view-all-btn" href="#all-products">View All Products</a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="slide" id="contact">
+    <div class="page-banner">
+      <p class="eyebrow">WE'D LOVE TO HEAR FROM YOU</p>
+      <h1>Contact Us</h1>
+      <p>Have questions? Get in touch with BrandonsBox!</p>
+    </div>
+
+    <div class="contact-details">
+      <h2>Visit Our Bakery</h2>
+
+      <p><strong>BrandonsBox Bakery</strong></p>
+
+      <p>
+        123 Sampaguita Street, Barangay Santo Niño,<br>
+        Quezon City, Metro Manila, 1100, Philippines.
+      </p>
+
+      <p><strong>Business:</strong> Online Bakery and Dessert Store</p>
+      <p><strong>Address:</strong> Quezon City, Philippines</p>
+    </div>
+  </section>
+</div>
+
+<!-- ALL PRODUCTS PAGE -->
+<main class="page" id="page-all-products">
+  <a class="back-link" href="#products">← Back</a>
+  <h2 class="section-title">All Products</h2>
+  <div id="all-products-list"></div>
+</main>
+
+<!-- CART PAGE -->
+<main class="page" id="page-cart">
+  <div class="cart-page">
+    <h1>Shopping Cart</h1>
+    <div id="cart-items"></div>
+
+    <div class="cart-buttons">
+      <a class="brown-btn" href="#products">Continue Shopping</a>
+      <a class="brown-btn" id="proceed-btn" href="#checkout">
+        Proceed to payment option
+      </a>
+    </div>
+  </div>
+</main>
+
+<!-- CHECKOUT PAGE -->
+<main class="page" id="page-checkout">
+  <form class="checkout-page" id="checkout-form" novalidate>
+
+    <div class="checkout-layout">
+
+      <div class="checkout-fields">
+        <h1 class="checkout-title">Checkout Page</h1>
+
+        <h3>Basic Information:</h3>
+
+        <div class="field-row">
+          <div>
+            <label for="checkout-first">First Name</label>
+            <input type="text" id="checkout-first" placeholder="First Name">
+            <span class="error" id="checkout-first-error"></span>
+          </div>
+
+          <div>
+            <label for="checkout-last">Last Name</label>
+            <input type="text" id="checkout-last" placeholder="Last Name">
+            <span class="error" id="checkout-last-error"></span>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div>
+            <label for="checkout-email">Email</label>
+            <input type="email" id="checkout-email" placeholder="example@mail.com">
+            <span class="error" id="checkout-email-error"></span>
+          </div>
+
+          <div>
+            <label for="checkout-address">Address (IF DELIVERY)</label>
+            <input type="text" id="checkout-address" placeholder="Your address">
+          </div>
+        </div>
+
+        <h3>Payment Method</h3>
+
+        <div class="field-row">
+          <div>
+            <select id="checkout-method">
+              <option value="">Choose payment method</option>
+              <option value="Gcash">Gcash</option>
+              <option value="Maya">Maya</option>
+              <option value="Apple Pay">Apple Pay</option>
+              <option value="Cash on Delivery">Cash on Delivery</option>
+            </select>
+            <span class="error" id="checkout-method-error"></span>
+          </div>
+        </div>
+
+        <h3>Payment Information:</h3>
+        <p>For this website demo, do not enter real payment details.</p>
+
+        <div class="field-row three">
+          <div>
+            <label for="checkout-card">Card Number (Demo)</label>
+            <input type="text" id="checkout-card"
+            inputmode="numeric" autocomplete="off"
+            placeholder="XXXX XXXX XXXX XXXX" maxlength="19">
+            <span class="error" id="checkout-card-error"></span>
+          </div>
+
+          <div>
+            <label for="checkout-expiry">Expiry Date</label>
+            <input type="text" id="checkout-expiry"
+            inputmode="numeric" autocomplete="off"
+            placeholder="mm/yy" maxlength="5">
+            <span class="error" id="checkout-expiry-error"></span>
+          </div>
+
+          <div>
+            <label for="checkout-cvc">CVC/CVV</label>
+            <input type="password" id="checkout-cvc"
+            inputmode="numeric" autocomplete="off"
+            placeholder="XXX" maxlength="4">
+            <span class="error" id="checkout-cvc-error"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="orders-wrap">
+        <h2 class="orders-title">ORDERS</h2>
+        <div class="orders-box" id="orders-items"></div>
+      </div>
+
+    </div>
+
+    <button class="brown-btn" id="pay-now" type="submit">
+      Confirm Demo Order
+    </button>
+
+    <div id="checkout-message"></div>
+  </form>
+</main>
+
+<!-- SIGN UP PAGE -->
+<main class="page" id="page-signup">
+  <div class="form-box">
+    <h2>Sign Up here</h2>
+
+    <form id="signup-form" novalidate>
+      <label for="signup-name">Full Name</label>
+      <input type="text" id="signup-name" placeholder="Your full name">
+      <span class="error" id="signup-name-error"></span>
+
+      <label for="signup-email">Email</label>
+      <input type="email" id="signup-email" placeholder="Your email">
+      <span class="error" id="signup-email-error"></span>
+
+      <label for="signup-password">Password</label>
+      <input type="password" id="signup-password"
+      data-min-length="8" placeholder="At least 8 characters">
+      <span class="error" id="signup-password-error"></span>
+
+      <label for="signup-confirm">Confirm Password</label>
+      <input type="password" id="signup-confirm"
+      data-match="signup-password" placeholder="Re-enter password">
+      <span class="error" id="signup-confirm-error"></span>
+
+      <button type="submit">Create Account</button>
+      <div id="signup-message"></div>
+    </form>
+
+    <p style="text-align:center;">
+      <a href="#login">Already have an account?</a>
+    </p>
+  </div>
+</main>
+
+<!-- LOGIN PAGE -->
+<main class="page" id="page-login">
+  <div class="form-box">
+    <h2>Welcome back</h2>
+    <p>Please log in</p>
+
+    <form id="login-form" novalidate>
+      <label for="login-email">Email</label>
+      <input type="email" id="login-email" placeholder="Your email">
+      <span class="error" id="login-email-error"></span>
+
+      <label for="login-password">Password</label>
+      <input type="password" id="login-password" placeholder="Your password">
+      <span class="error" id="login-password-error"></span>
+
+      <button type="submit">Log In</button>
+      <div id="login-message"></div>
+    </form>
+
+    <p style="text-align:center;">
+      <a href="#signup">New account? Sign up</a>
+    </p>
+  </div>
+</main>
+
+<footer>
+  <div>
+    <strong>BrandonsBox</strong>
+    <p>Your box of sweets and happiness.</p>
+  </div>
+  <p>© 2026 Brandons Co. All Rights Reserved.</p>
+</footer>
+
+</div>
+
+<script>
+
+/* =====================================
+   PRODUCT INFORMATION
+   Change the image URL to use your own
+   food pictures.
+===================================== */
+
+var CATEGORIES = [
+
+  {
+    title:"Cakes",
+    items:[
+      {
+        id:"cake1",
+        name:"Red Velvet Cake",
+        price:650,
+        image:"https://images.unsplash.com/photo-1586788680434-30d324b2d46f?w=700",
+        ingredients:"Cake flour, cocoa powder, buttermilk, butter or oil, sugar, eggs, vinegar, baking soda, and red food coloring. Typically frosted with cream cheese, butter, and powdered sugar."
+      },
+      {
+        id:"cake2",
+        name:"Black Forest Cake",
+        price:650,
+        image:"https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=700",
+        ingredients:"Chocolate sponge cake layers, heavy whipping cream, tart sour cherries, chocolate shavings, and Kirschwasser (cherry schnapps used to brush the cake layers)."
+      },
+      {
+        id:"cake3",
+        name:"Classic Carrot Cake",
+        price:600,
+        image:"https://jessiebakescakes.com/wp-content/uploads/2024/03/Classic-Carrot-Cake-6-min-scaled.jpg",
+        ingredients:"Grated fresh carrots, oil, flour, eggs, brown sugar, baking soda, cinnamon, and nutmeg. Often includes chopped walnuts or pecans and raisins, layered with cream cheese frosting."
+      }
+    ]
+  },
+
+  {
+    title:"Cookies",
+    items:[
+      {
+        id:"cookie1",
+        name:"Chocolate Chip Cookies",
+        price:180,
+        image:"https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=700",
+        ingredients:"All-purpose flour, baking soda, salt, softened butter, granulated white sugar, packed brown sugar, vanilla extract, eggs, and semi-sweet chocolate chips or chunks."
+      },
+      {
+        id:"cookie2",
+        name:"French Macarons",
+        price:250,
+        image:"https://images.unsplash.com/photo-1569864358642-9d1684040f43?w=700",
+        ingredients:"Finely ground almond flour, powdered sugar, egg whites, a pinch of cream of tartar, and granulated sugar for the meringue shells. Filled with buttercream, ganache, or jam."
+      },
+      {
+        id:"cookie3",
+        name:"Oatmeal Raisin Cookies",
+        price:180,
+        image:"https://www.rainbownourishments.com/wp-content/uploads/2023/08/vegan-oatmeal-raisin-cookies-1.jpg",
+        ingredients:"Rolled oats, flour, butter, brown sugar, white sugar, eggs, vanilla extract, baking soda, cinnamon, and sweet dried raisins."
+      }
+    ]
+  },
+
+  {
+    title:"Pastries",
+    items:[
+      {
+        id:"pastry1",
+        name:"Croissant",
+        price:95,
+        image:"https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=700",
+        ingredients:"All-purpose or bread flour, active dry yeast, sugar, salt, milk, and a large amount of cold unsalted butter for laminating the layers."
+      },
+      {
+        id:"pastry2",
+        name:"Fruit Tart",
+        price:120,
+        image:"https://images.unsplash.com/photo-1488477181946-6428a0291777?w=700",
+        ingredients:"Flour, cold butter, sugar, a pinch of salt, and ice water for the shell; vanilla pastry cream made with milk, sugar, egg yolks, and cornstarch; fresh glazed berries for the filling."
+      },
+      {
+        id:"pastry3",
+        name:"Chocolate Éclair",
+        price:110,
+        image:"https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=700",
+        ingredients:"Water, unsalted butter, salt, flour, and whole eggs for the choux shells; filled with vanilla custard or cream and topped with chocolate ganache made with heavy cream and chocolate."
+      }
+    ]
+  },
+
+  {
+    title:"Brownies",
+    items:[
+      {
+        id:"brownie1",
+        name:"Classic Fudgy Brownies",
+        price:220,
+        image:"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=700",
+        ingredients:"Melted butter, high-quality cocoa powder or melted chocolate, granulated sugar, eggs, vanilla extract, and a very small amount of flour. Omitting baking powder keeps them dense and fudgy."
+      },
+      {
+        id:"brownie2",
+        name:"Cheesecake Swirl Brownies",
+        price:250,
+        image:"https://images.unsplash.com/photo-1564355808539-22fda35bed7e?w=700",
+        ingredients:"Standard chocolate brownie batter layered and swirled with a cheesecake mixture made of softened cream cheese, sugar, an egg yolk, and vanilla extract."
+      },
+      {
+        id:"brownie3",
+        name:"Blondies",
+        price:200,
+        image:"https://bakefromscratch.com/wp-content/uploads/2019/06/BrownieBlondieCoconut597SWSfull-1-696x557.jpg",
+        ingredients:"Melted butter, a high ratio of brown sugar, flour, eggs, baking powder, vanilla, and optional mix-ins like white chocolate chips or walnuts."
+      }
+    ]
+  }
+
+];
+
+/* BEST SELLERS */
+var BEST_SELLERS = ["cake1","cookie1","brownie1"];
+
+/* FIND PRODUCT */
+function findProduct(id) {
+  for (var i=0; i<CATEGORIES.length; i++) {
+    var found = CATEGORIES[i].items.find(function(item) {
+      return item.id === id;
+    });
+    if (found) return found;
+  }
+  return null;
+}
+
+/* ESCAPE TEXT */
+function escapeHTML(text) {
+  var div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+/* PRODUCT CARD HTML */
+function productCardHTML(p) {
+  return `
+    <div class="product-card"
+      data-id="${p.id}"
+      data-name="${escapeHTML(p.name)}"
+      data-price="${p.price}">
+
+      <img class="product-image"
+        src="${p.image}"
+        alt="${escapeHTML(p.name)}"
+        loading="lazy"
+        onerror="this.onerror=null;this.src='https://placehold.co/600x400/f4e2c4/8b451f?text=Food+Image';">
+
+      <h3>${escapeHTML(p.name)}</h3>
+
+      <div class="ingredients">
+        <strong>Ingredients:</strong>
+        ${escapeHTML(p.ingredients)}
+      </div>
+
+      <p class="price">₱${p.price.toFixed(2)}</p>
+
+      <button class="add-btn" type="button">
+        Add to Cart
+      </button>
+    </div>
+  `;
+}
+
+/* BUILD BEST SELLERS */
+function buildBestSellers() {
+  var html = "";
+
+  BEST_SELLERS.forEach(function(id) {
+    var product = findProduct(id);
+    if (product) html += productCardHTML(product);
+  });
+
+  document.getElementById("best-sellers-list").innerHTML = html;
+}
+
+/* BUILD ALL PRODUCTS */
+function buildAllProducts() {
+  var html = "";
+
+  CATEGORIES.forEach(function(category) {
+    html += `<h3 class="category-title">${escapeHTML(category.title)}</h3>`;
+    html += `<div class="product-grid">`;
+
+    category.items.forEach(function(product) {
+      html += productCardHTML(product);
+    });
+
+    html += `</div>`;
+  });
+
+  document.getElementById("all-products-list").innerHTML = html;
+}
+
+/* =====================================
+   PAGE NAVIGATION
+===================================== */
+
+var SECTIONS = ["about","products","contact"];
+var PAGES = ["all-products","cart","checkout","signup","login"];
+
+function setActive(name) {
+  document.querySelectorAll("nav a[data-page]").forEach(function(link) {
+    link.classList.toggle("active",link.dataset.page === name);
+  });
+}
+
+function showPage() {
+  var name = window.location.hash.replace("#","").toLowerCase();
+  var isPage = PAGES.indexOf(name) !== -1;
+
+  document.getElementById("scroll-site").style.display =
+    isPage ? "none" : "block";
+
+  PAGES.forEach(function(p) {
+    document.getElementById("page-" + p)
+      .classList.toggle("show",p === name);
+  });
+
+  if (isPage) {
+    setActive(name === "all-products" ? "products" : name);
+    window.scrollTo(0,0);
+  } else {
+    if (SECTIONS.indexOf(name) === -1) name = "about";
+
+    var target = document.getElementById(name);
+
+    if (name === "about") {
+      window.scrollTo(0,0);
+    } else {
+      target.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+    }
+
+    setActive(name);
+  }
+
+  var nav = document.getElementById("main-nav");
+  var btn = document.getElementById("menu-toggle");
+
+  nav.classList.remove("open");
+  btn.textContent = "☰";
+  btn.setAttribute("aria-expanded","false");
+
+  renderCart();
+}
+
+/* SCROLL SPY */
+function setupScrollSpy() {
+  if (!("IntersectionObserver" in window)) return;
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) setActive(entry.target.id);
+    });
+  }, {
+    rootMargin:"-40% 0px -55% 0px"
+  });
+
+  SECTIONS.forEach(function(id) {
+    observer.observe(document.getElementById(id));
+  });
+}
+
+/* MOBILE MENU */
+function setupMobileMenu() {
+  var btn = document.getElementById("menu-toggle");
+  var nav = document.getElementById("main-nav");
+
+  btn.addEventListener("click",function() {
+    nav.classList.toggle("open");
+
+    var open = nav.classList.contains("open");
+
+    btn.setAttribute("aria-expanded",open);
+    btn.textContent = open ? "✕" : "☰";
+  });
+}
+
+/* NAVIGATION HOVER */
+function setupNavHover() {
+  document.querySelectorAll("nav a").forEach(function(link) {
+    link.addEventListener("mouseover",function() {
+      link.classList.add("hovered");
+    });
+
+    link.addEventListener("mouseout",function() {
+      link.classList.remove("hovered");
+    });
+  });
+}
+
+/* TOAST MESSAGE */
+function showMessage(message) {
+  var toast = document.getElementById("toast");
+
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "toast";
+    document.body.appendChild(toast);
+  }
+
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  setTimeout(function() {
+    toast.classList.remove("show");
+  },2000);
+}
+
+/* =====================================
+   STORAGE
+===================================== */
+
+function readStore(key) {
+  try {
+    return JSON.parse(localStorage.getItem(key));
+  } catch(e) {
+    return null;
+  }
+}
+
+function writeStore(key,value) {
+  try {
+    localStorage.setItem(key,JSON.stringify(value));
+  } catch(e) {}
+}
+
+/* =====================================
+   FORM VALIDATION
+===================================== */
+
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function setError(input,message) {
+  var box = document.getElementById(input.id + "-error");
+
+  if (box) box.textContent = message;
+
+  input.classList.toggle("invalid",message !== "");
+}
+
+function validateField(input) {
+  var value = input.value.trim();
+
+  if (value === "") {
+    setError(input,"This field is required.");
+    return false;
+  }
+
+  if (input.type === "email" && !isValidEmail(value)) {
+    setError(input,"Please enter a valid email.");
+    return false;
+  }
+
+  var min = parseInt(input.dataset.minLength);
+
+  if (min && value.length < min) {
+    setError(input,"Password must be at least " + min + " characters.");
+    return false;
+  }
+
+  if (input.dataset.match) {
+    if (value !== document.getElementById(input.dataset.match).value) {
+      setError(input,"Passwords do not match.");
+      return false;
+    }
+  }
+
+  setError(input,"");
+  return true;
+}
+
+function showFormMessage(boxId,text,isSuccess) {
+  var box = document.getElementById(boxId);
+
+  box.textContent = text;
+  box.className = isSuccess
+    ? "form-message success"
+    : "form-message error-msg";
+}
+
+/* SIGN UP */
+function setupSignupForm() {
+  var form = document.getElementById("signup-form");
+  var fields = form.querySelectorAll("input");
+
+  fields.forEach(function(field) {
+    field.addEventListener("input",function() {
+      validateField(field);
+
+      if (field.id === "signup-password") {
+        var confirm = document.getElementById("signup-confirm");
+
+        if (confirm.value !== "") validateField(confirm);
+      }
+    });
+  });
+
+  form.addEventListener("submit",function(event) {
+    event.preventDefault();
+
+    var allValid = true;
+
+    fields.forEach(function(field) {
+      if (!validateField(field)) allValid = false;
+    });
+
+    if (!allValid) {
+      showFormMessage(
+        "signup-message",
+        "Please fix the errors above.",
+        false
+      );
+      return;
+    }
+
+    var user = {
+      name:document.getElementById("signup-name").value.trim(),
+      email:document.getElementById("signup-email").value.trim().toLowerCase(),
+      password:document.getElementById("signup-password").value
+    };
+
+    // Demonstration only; do not use this for real accounts.
+    writeStore("BrandonsboxUser",user);
+
+    showFormMessage(
+      "signup-message",
+      "Account created! Welcome to BrandonsBox, " + user.name + "!",
+      true
+    );
+
+    form.reset();
+  });
+}
+
+/* LOGIN */
+function setupLoginForm() {
+  var form = document.getElementById("login-form");
+  var fields = form.querySelectorAll("input");
+
+  fields.forEach(function(field) {
+    field.addEventListener("input",function() {
+      validateField(field);
+    });
+  });
+
+  form.addEventListener("submit",function(event) {
+    event.preventDefault();
+
+    var allValid = true;
+
+    fields.forEach(function(field) {
+      if (!validateField(field)) allValid = false;
+    });
+
+    if (!allValid) {
+      showFormMessage(
+        "login-message",
+        "Please fix the errors above.",
+        false
+      );
+      return;
+    }
+
+    var saved = readStore("BrandonsboxUser");
+
+    var email = document.getElementById("login-email")
+      .value.trim().toLowerCase();
+
+    var password = document.getElementById("login-password").value;
+
+    if (saved && saved.email === email && saved.password === password) {
+      writeStore("BrandonsboxLoggedIn",true);
+
+      showFormMessage(
+        "login-message",
+        "Login successful! Welcome back, " + saved.name + "!",
+        true
+      );
+    } else {
+      showFormMessage(
+        "login-message",
+        "Incorrect email or password.",
+        false
+      );
+    }
+  });
+}
+
+/* =====================================
+   SHOPPING CART
+===================================== */
+
+function getCart() {
+  return readStore("BrandonsboxCart") || [];
+}
+
+function saveCart(cart) {
+  writeStore("BrandonsboxCart",cart);
+}
+
+function calculateTotal(cart) {
+  var total = 0;
+
+  for (var i=0; i<cart.length; i++) {
+    total += cart[i].price * cart[i].qty;
+  }
+
+  return total;
+}
+
+function updateCartCount() {
+  var count = 0;
+
+  getCart().forEach(function(item) {
+    count += item.qty;
+  });
+
+  document.getElementById("cart-count").textContent = count;
+}
+
+/* QUANTITY BUTTONS */
+function qtyPill(item) {
+  return `
+    <span class="qty-pill">
+      <button type="button" class="qty-btn"
+        data-id="${item.id}" data-delta="-1"
+        aria-label="Decrease quantity">-</button>
+
+      <span class="qty-value">${item.qty}</span>
+
+      <button type="button" class="qty-btn"
+        data-id="${item.id}" data-delta="1"
+        aria-label="Increase quantity">+</button>
+    </span>
+  `;
+}
+
+/* CART IMAGE */
+function cartImage(item) {
+  var image = item.image ||
+    "https://placehold.co/200x200/f4e2c4/8b451f?text=Food";
+
+  return `
+    <div class="item-img">
+      <img src="${image}" alt="${escapeHTML(item.name)}"
+      onerror="this.onerror=null;this.src='https://placehold.co/200x200/f4e2c4/8b451f?text=Food';">
+    </div>
+  `;
+}
+
+/* DISPLAY CART AND CHECKOUT ORDERS */
+function renderCart() {
+  var cartBox = document.getElementById("cart-items");
+  var ordersBox = document.getElementById("orders-items");
+  var cart = getCart();
+
+  if (!cartBox || !ordersBox) return;
+
+  if (cart.length === 0) {
+    cartBox.innerHTML = '<p id="cart-empty">Your cart is empty.</p>';
+    ordersBox.innerHTML = "<p>Your cart is empty.</p>";
+    return;
+  }
+
+  var cartHtml = "";
+  var ordersHtml = "";
+
+  cart.forEach(function(item) {
+    var lineTotal = "₱" + (item.price * item.qty).toFixed(2);
+
+    cartHtml += `
+      <div class="cart-row">
+        ${cartImage(item)}
+
+        <div class="cart-info">
+          <h3 class="cart-name">${escapeHTML(item.name)}</h3>
+
+          <div class="qty-line">
+            <span class="qty-label">Quantity:</span>
+            ${qtyPill(item)}
+          </div>
+        </div>
+
+        <div class="price-oval">${lineTotal}</div>
+      </div>
+    `;
+
+    ordersHtml += `
+      <div class="order-row">
+        ${cartImage(item)}
+
+        <div class="order-info">
+          <p class="order-name">${escapeHTML(item.name)}</p>
+
+          <div class="qty-line">
+            <span class="qty-label">Quantity:</span>
+            ${qtyPill(item)}
+          </div>
+
+          <p class="order-price">${lineTotal}</p>
+        </div>
+      </div>
+    `;
+  });
+
+  cartBox.innerHTML = cartHtml;
+  ordersBox.innerHTML = ordersHtml;
+}
+
+/* ADD PRODUCT TO CART */
+function addToCart(id) {
+  var product = findProduct(id);
+
+  if (!product) return;
+
+  var cart = getCart();
+
+  var existing = cart.find(function(item) {
+    return item.id === id;
+  });
+
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({
+      id:product.id,
+      name:product.name,
+      price:product.price,
+      image:product.image,
+      qty:1
+    });
+  }
+
+  saveCart(cart);
+  renderCart();
+  updateCartCount();
+
+  showMessage(product.name + " added to cart!");
+}
+
+/* CHANGE QUANTITY */
+function changeQty(id,delta) {
+  var cart = getCart();
+
+  cart.forEach(function(item) {
+    if (item.id === id) item.qty += delta;
+  });
+
+  cart = cart.filter(function(item) {
+    return item.qty > 0;
+  });
+
+  saveCart(cart);
+  renderCart();
+  updateCartCount();
+}
+
+/* PRODUCT BUTTON EVENTS */
+function setupProducts() {
+  renderCart();
+
+  document.addEventListener("click",function(event) {
+    if (event.target.classList.contains("add-btn")) {
+      var card = event.target.closest(".product-card");
+
+      if (card) addToCart(card.dataset.id);
+    }
+
+    if (event.target.classList.contains("qty-btn")) {
+      changeQty(
+        event.target.dataset.id,
+        parseInt(event.target.dataset.delta)
+      );
+    }
+  });
+
+  document.addEventListener("mouseover",function(event) {
+    var card = event.target.closest(".product-card");
+
+    if (card) card.classList.add("hovered");
+  });
+
+  document.addEventListener("mouseout",function(event) {
+    var card = event.target.closest(".product-card");
+
+    if (card) card.classList.remove("hovered");
+  });
+
+  document.getElementById("proceed-btn")
+    .addEventListener("click",function(event) {
+      if (getCart().length === 0) {
+        event.preventDefault();
+        showMessage("Your cart is empty.");
+      }
+    });
+}
+
+/* =====================================
+   CHECKOUT
+===================================== */
+
+function setupCheckoutForm() {
+  var form = document.getElementById("checkout-form");
+
+  var required = [
+    "checkout-first",
+    "checkout-last",
+    "checkout-email"
+  ].map(function(id) {
+    return document.getElementById(id);
+  });
+
+  var method = document.getElementById("checkout-method");
+  var card = document.getElementById("checkout-card");
+  var expiry = document.getElementById("checkout-expiry");
+  var cvc = document.getElementById("checkout-cvc");
+
+  required.forEach(function(field) {
+    field.addEventListener("input",function() {
+      validateField(field);
+    });
+  });
+
+  /* Format card number */
+  card.addEventListener("input",function() {
+    var digits = card.value.replace(/\D/g,"").slice(0,16);
+    card.value = digits.replace(/(.{4})/g,"$1 ").trim();
+  });
+
+  /* Format expiry */
+  expiry.addEventListener("input",function() {
+    var digits = expiry.value.replace(/\D/g,"").slice(0,4);
+
+    expiry.value = digits.length > 2
+      ? digits.slice(0,2) + "/" + digits.slice(2)
+      : digits;
+  });
+
+  /* Format CVC */
+  cvc.addEventListener("input",function() {
+    cvc.value = cvc.value.replace(/\D/g,"").slice(0,4);
+  });
+
+  function validateMethod() {
+    var ok = method.value !== "";
+
+    document.getElementById("checkout-method-error").textContent =
+      ok ? "" : "Please choose a payment method.";
+
+    method.classList.toggle("invalid",!ok);
+
+    return ok;
+  }
+
+  method.addEventListener("change",validateMethod);
+
+  function validateCardFields() {
+    var anyFilled = card.value || expiry.value || cvc.value;
+
+    if (!anyFilled) {
+      [card,expiry,cvc].forEach(function(field) {
+        setError(field,"");
+      });
+
+      return true;
+    }
+
+    var ok = true;
+
+    if (card.value.replace(/\s/g,"").length !== 16) {
+      setError(card,"Enter a 16-digit card number.");
+      ok = false;
+    } else {
+      setError(card,"");
+    }
+
+    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiry.value)) {
+      setError(expiry,"Use mm/yy.");
+      ok = false;
+    } else {
+      setError(expiry,"");
+    }
+
+    if (!/^\d{3,4}$/.test(cvc.value)) {
+      setError(cvc,"Enter 3 or 4 digits.");
+      ok = false;
+    } else {
+      setError(cvc,"");
+    }
+
+    return ok;
+  }
+
+  form.addEventListener("submit",function(event) {
+    event.preventDefault();
+
+    if (getCart().length === 0) {
+      showFormMessage(
+        "checkout-message",
+        "Your cart is empty.",
+        false
+      );
+      return;
+    }
+
+    var allValid = true;
+
+    required.forEach(function(field) {
+      if (!validateField(field)) allValid = false;
+    });
+
+    if (!validateMethod()) allValid = false;
+    if (!validateCardFields()) allValid = false;
+
+    if (!allValid) {
+      showFormMessage(
+        "checkout-message",
+        "Please fix the errors above.",
+        false
+      );
+      return;
+    }
+
+    var first = document.getElementById("checkout-first").value.trim();
+
+    // Demo checkout only. No actual payment is processed.
+    // Do not enter real card or payment information.
+    saveCart([]);
+    renderCart();
+    updateCartCount();
+
+    form.reset();
+
+    showFormMessage(
+      "checkout-message",
+      "Demo order completed! Thank you, " + first + "!",
+      true
+    );
+  });
+}
+
+/* =====================================
+   START WEBSITE
+===================================== */
+
+document.addEventListener("DOMContentLoaded",function() {
+  setupMobileMenu();
+  setupNavHover();
+
+  setupSignupForm();
+  setupLoginForm();
+
+  buildBestSellers();
+  buildAllProducts();
+
+  setupProducts();
+  setupCheckoutForm();
+
+  setupScrollSpy();
+  updateCartCount();
+
+  showPage();
+
+  window.addEventListener("hashchange",showPage);
+});
+
+</script>
+</body>
+</html>
